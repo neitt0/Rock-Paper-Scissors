@@ -23,9 +23,6 @@
             
             function playRound(playerSelection, computerSelection) {
 
-                // console.log(playerSelection);
-                // console.log(computerSelection);
-
                 // check player's choice
                 switch (playerSelection) {
                     case "rock":
@@ -80,8 +77,6 @@
                 }
             }
 
-            // console.log(playRound("ROck", getComputerChoice()));
-
             function game() {
                 // Score of Player
                 let playerScore = 0;
@@ -96,7 +91,6 @@
                     
                     // Run round
                     let round = playRound(playerChoice, getComputerChoice());
-                    console.log(round);
                     
                     // Add score to winner
                     if (round === "You Won!") {
@@ -104,13 +98,13 @@
                     } else if (round === "You lost!") {
                         computerScore = computerScore + 1;
                     }
-
+                    
+                    console.log(`Round: ${i + 1}`);
+                    console.log(round);
                     console.log(playerScore);
                     console.log(computerScore);
                 }
             }
-
-            game();
         </script>
     </body>
 </html>
