@@ -1,12 +1,11 @@
 const playerOptions = document.querySelectorAll("button")
 const scoreBoard = document.querySelector(".scoreBoard")
 
+let result = document.createElement("p")
+
 playerOptions.forEach(option => {
   option.addEventListener("click", () => {
-    let result = document.createElement("p")
-
-    
-    result.textContent = playRound(option.innerText.toLocaleLowerCase(), getComputerChoice())
+    result.textContent = playRound(option.innerText.toLowerCase(), getComputerChoice())
     
     scoreBoard.appendChild(result)
   });
