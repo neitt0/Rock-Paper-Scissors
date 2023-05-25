@@ -2,15 +2,22 @@ const playerOptions = document.querySelectorAll("button")
 const scoreBoard = document.querySelector(".scoreBoard")
 
 let result = document.createElement("p")
+let player = document.createElement("p")
+let computer = document.createElement("p")
 
 playerOptions.forEach(option => {
   option.addEventListener("click", () => {
-    result.textContent = playRound(option.innerText.toLowerCase(), getComputerChoice())
+    let playerChoice = option.innerText.toLowerCase()
+    let computerChoice = getComputerChoice()
     
-    scoreBoard.appendChild(result)
+    player.textContent = `Your choice: ${playerChoice}`;
+    computer.textContent = `Computer's choice: ${computerChoice}`;
+
+    result.textContent = playRound(playerChoice, computerChoice)
+    
+    scoreBoard.append(player, computer, result)
   });
 })
-
 
 
 
