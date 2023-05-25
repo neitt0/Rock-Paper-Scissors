@@ -1,9 +1,18 @@
 const playerOptions = document.querySelectorAll("button")
 const scoreBoard = document.querySelector(".scoreBoard")
 
-let result = document.createElement("p")
-let player = document.createElement("p")
-let computer = document.createElement("p")
+const result = document.createElement("p")
+const player = document.createElement("p")
+const computer = document.createElement("p")
+
+let playerScoreCount = 0;
+let computerScoreCount = 0;
+
+const gameDecided = document.querySelector(".gameDecided")
+
+const playerScoreDisplay = document.createElement("p")
+const computerScoreDisplay = document.createElement("p")
+const finalResult = document.createElement("p")
 
 playerOptions.forEach(option => {
   option.addEventListener("click", () => {
@@ -16,9 +25,25 @@ playerOptions.forEach(option => {
     result.textContent = playRound(playerChoice, computerChoice)
     
     scoreBoard.append(player, computer, result)
+
+    if (result.innerText == "You won!") {
+      playerScoreCount++;
+    } else if (result.innerText == "You lost!") {
+      computerScoreCount++;
+    }
+
+    if (playerScoreCount
+     == 5) {
+      finalResult.textContent = "You won!"
+    } else if (computerScoreCount == 5) {
+      finalResult.textContent = "The Computer won! :("
+    }
+    playerScoreDisplay.innerText = `Your Score: ${playerScoreCount}`
+    computerScoreDisplay.innerText = `COM's Score: ${computerScoreCount}`
+
+    gameDecided.append(playerScoreDisplay, computerScoreDisplay, finalResult)
   });
 })
-
 
 
 
@@ -60,7 +85,7 @@ function playRound(playerSelection, computerSelection) {
           return "You lost!";
           break;
         case "scissors":
-          return "You Won!";
+          return "You won!";
           break;
         default:
           return "Failed to get computer's response";
@@ -69,7 +94,7 @@ function playRound(playerSelection, computerSelection) {
     case "paper":
       switch (computerSelection) {
         case "rock":
-          return "You Won!";
+          return "You won!";
           break;
         case "paper":
           return "You tied!";
@@ -87,7 +112,7 @@ function playRound(playerSelection, computerSelection) {
           return "You lost!";
           break;
         case "paper":
-          return "You Won!";
+          return "You won!";
           break;
         case "scissors":
           return "You tied!";
@@ -100,33 +125,3 @@ function playRound(playerSelection, computerSelection) {
       return "Failed to get your response";
   }
 }
-
-/*
-function game() {
-  // Score of Player
-  let playerScore = 0;
-
-  // Score of Computer
-  let computerScore = 0;
-
-  for (let i = 0; i < 5; i++) {
-    // Prompt for player's choice
-    let playerChoice = prompt("Choose your weapon! Rock, Paper, or Scissors?");
-
-    // Run round
-    let round = playRound(playerChoice, getComputerChoice());
-
-    // Add score to winner
-    if (round === "You Won!") {
-      playerScore = playerScore + 1;
-    } else if (round === "You lost!") {
-      computerScore = computerScore + 1;
-    }
-
-    console.log(`Round: ${i + 1}`);
-    console.log(round);
-    console.log(playerScore);
-    console.log(computerScore);
-  }
-}
-*/
