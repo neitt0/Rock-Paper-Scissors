@@ -44,7 +44,10 @@ playerOptions.forEach(option => {
       overlayDiv.classList.add('gameOverScreen')
 
       // create child button for 'play again'
-      
+      const playAgainBtn = document.createElement('button')
+      playAgainBtn.classList.add('playAgainBtn')
+      playAgainBtn.innerText = 'Play Again'
+      overlayDiv.appendChild(playAgainBtn)
 
       body.appendChild(overlayDiv)
     } else if (computerScoreCount == 5) {
