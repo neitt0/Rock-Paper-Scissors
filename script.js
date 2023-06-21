@@ -62,56 +62,15 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
 
-  // check player's choice
-  switch (playerSelection) {
-    case "rock":
-      // check computer's choice
-      switch (computerSelection) {
-        // compares
-        case "rock":
-          return "You tied!";
-          break;
-        case "paper":
-          return "You lost!";
-          break;
-        case "scissors":
-          return "You won!";
-          break;
-        default:
-          return "Failed to get computer's response";
-      }
-      break;
-    case "paper":
-      switch (computerSelection) {
-        case "rock":
-          return "You won!";
-          break;
-        case "paper":
-          return "You tied!";
-          break;
-        case "scissors":
-          return "You lost!";
-          break;
-        default:
-          return "Failed to get computer's response";
-      }
-      break;
-    case "scissors":
-      switch (computerSelection) {
-        case "rock":
-          return "You lost!";
-          break;
-        case "paper":
-          return "You won!";
-          break;
-        case "scissors":
-          return "You tied!";
-          break;
-        default:
-          return "Failed to get computer's response";
-      }
-      break;
-    default:
-      return "Failed to get your response";
+  if (playerSelection == 'rock' && computerSelection == 'rock' ||
+      playerSelection == 'paper' && computerSelection == 'paper' ||
+      playerSelection == 'scissors' && computerSelection == 'scissors') {
+    return 'Phew, you tied'
+  } else if (playerSelection == 'rock' && computerSelection == 'scissors' ||
+            playerSelection == 'paper' && computerSelection == 'rock' ||
+            playerSelection == 'scissors' && computerSelection == 'paper') {
+    return 'Yay, you won!'
+  } else {
+    return 'AWW, you lost :('
   }
 }
