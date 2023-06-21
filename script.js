@@ -1,3 +1,5 @@
+const body = document.querySelector('body')
+
 const playerOptions = document.querySelectorAll("button")
 const scoreBoard = document.querySelector(".scoreBoard")
 
@@ -14,6 +16,7 @@ const playerScoreDisplay = document.createElement("p")
 const computerScoreDisplay = document.createElement("p")
 const finalResult = document.createElement("p")
 
+// Play game based on player's choice
 playerOptions.forEach(option => {
   option.addEventListener("click", () => {
     let playerChoice = option.innerText.toLowerCase()
@@ -23,18 +26,27 @@ playerOptions.forEach(option => {
     computer.textContent = `Computer's choice: ${computerChoice}`;
 
     result.textContent = playRound(playerChoice, computerChoice)
-    
     scoreBoard.append(player, computer, result)
 
-    if (result.innerText == "You won!") {
+    if (result.innerText == 'Yay, you won!') {
       playerScoreCount++;
-    } else if (result.innerText == "You lost!") {
+    } else if (result.innerText == 'AWW, you lost :(') {
       computerScoreCount++;
     }
 
+    // End game
     if (playerScoreCount
      == 5) {
       finalResult.textContent = "You won!"
+      
+      // create overlaying div
+      const overlayDiv = document.createElement('div')
+      overlayDiv.classList.add('gameOverScreen')
+
+      // create child button for 'play again'
+      
+
+      body.appendChild(overlayDiv)
     } else if (computerScoreCount == 5) {
       finalResult.textContent = "The Computer won! :("
     }
@@ -52,16 +64,12 @@ function getRandomNumber(min, max) {
 }
 
 function getComputerChoice() {
-  // List for all the choices
   let list = ["rock", "paper", "scissors"];
-  // get random number from 0 to list.length - 1
   let choice = getRandomNumber(0, list.length);
-  // return list[random number]
   return list[choice];
 }
 
 function playRound(playerSelection, computerSelection) {
-
   if (playerSelection == 'rock' && computerSelection == 'rock' ||
       playerSelection == 'paper' && computerSelection == 'paper' ||
       playerSelection == 'scissors' && computerSelection == 'scissors') {
