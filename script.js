@@ -46,16 +46,6 @@ playerOptions.forEach(option => {
 })
 
 
-
-
-
-
-
-
-
-
-
-
 // get random number between specified parameter
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
